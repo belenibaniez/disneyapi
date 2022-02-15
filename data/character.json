@@ -1,0 +1,99 @@
+[
+    {
+        "id": 1,
+        "name": "Jumbo Jr",
+        "story": "Elefante asiatico pequeñi con orejas muy grandes que le permitian volar. Es cruelmente apodado Dumbo",
+        "weight": 113.398
+    },
+    {
+        "id": 2,
+        "name": "Timoteo Q. Mouse",
+        "story": "Cuando Timoteo ve que Dumbo está triste por que las demás elefantas le rechazan por sus enormes orejas."
+    },
+    {
+        "id": 3,
+        "name": "Sra Jumbo",
+        "story": "Mamá de Jumbo, un dia pierde la paciencia con un grupo de muchachos maleducados que se burlaban de Dumbo, como resultado, es catalogada como animal peligroso."
+    },
+    {
+        "id": 4,
+        "name": "Max Medici",
+        "story": "Medici es el maestro de ceremonias y dueño de un pequeño circo en apuros adquirido por V.A. Vandevere."
+    },
+    {
+        "id": 5,
+        "name": "HOLT FARRIER",
+        "story": "Estrella de circo de Kentucky que después de perder un brazo en una guerra regresa junto a sus dos hijos, Milly (Nico Parker) y Joe (Finley Hobbis), para cuidar a una cría de elefante de enormes orejas."
+    },
+    {
+        "id": 6,
+        "name": "Joe FARRIER",
+        "story": "Hijo de Holt Farrier."
+    },
+    {
+        "id": 7,
+        "name": "Milly FARRIER",
+        "story": "Hija de Holt Farrier"
+    },
+    {
+        "id": 8,
+        "name": "COLETTE MARCHANT",
+        "story": "Colette es una artista de trapecio francesa que actúa en el circo y que suele acompañar del brazo a V.A. Vandevere. Ella es la encargada de volar en el acto central, montada sobre Dumbo."
+    },
+    {
+        "id": 9,
+        "name": "V.A. VANDEVERE",
+        "story": "Vandevere es un cruel y enigmático empresario que pone la mira en el circo de Medici y en su elefante volador. Su plan es llevarse a Dumbo a su parque de entretenimiento, Sueñolandia."
+    },
+    {
+        "id": 10,
+        "name": "Jasmín",
+        "story": "Jasmine es una soñadora que ama a su mascota tigre, Rajah. Es libre de espíritu, confiada y amable. Cuando conoce a Aladdin, descubre las maravillas que suele imaginarse fuera de las paredes del palacio.",
+        "age": 15
+    },
+    {
+        "id": 11,
+        "name": "Aladdín",
+        "story": "Aladdín vive en una guarida en el bazar de Ágrabah con su mono Abú, y sueña con vivir lleno de lujos.",
+        "age": 18
+    },
+    {
+        "id": 12,
+        "name": "Abú",
+        "story": "Es un travieso monito ladronzuelo que tiene el honor de ser el mejor amigo de Aladdín, además del Genio y Jasmín. "
+    },
+    {
+        "id": 13,
+        "name": "Genio",
+        "story": " Genio posee un poder cósmico que le permite conceder deseos, cambiar de forma y trascender en el espacio y el tiempo; sin embargo, tiene la carga de permanecer atado a su lámpara toda una eternidad a menos que su amo le otorgue la libertad."
+    },
+    {
+        "id": 14,
+        "name": "Jumba Jookiba",
+        "story": " Es el creador del Stitch y sus primos. Habla con un acento vagamente ruso. También parece ser demasiado pesado."
+    },
+    {
+        "id": 15,
+        "name": "Stitch",
+        "story": "Es un extraterrestre que se hace pasar por un perro. Tiene cuatro brazos y antenas que puede ocultar",
+        "weight": 54.4
+    },
+    {
+        "id": 16,
+        "name": "Lilo Pelekai",
+        "story": "Lilo es una niña hawaiana que vive en la isla de Kauai junto con su Ohana ",
+        "age": 6
+    },
+    {
+        "id": 17,
+        "name": "Kuzco",
+        "story": " Kuzco es un emperador egoísta y presumido. Él quiere construirse un lugar de vacaciones justo donde está la casa de Pacha, sin importarle que les pase a Pacha y su familia ",
+        "age": 18
+    },
+    {
+        "id": 18,
+        "name": "Mivkey Mouse",
+        "story": "Raton mas famoso de diseney "
+        
+    }
+]

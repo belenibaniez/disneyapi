@@ -1,0 +1,1005 @@
+{
+	"info": {
+		"_postman_id": "2ae43a1a-1204-48ee-998e-2f5a3b980372",
+		"name": "Api Disney",
+		"description": "API para obtener y cargar peliculas y  personajes del mundo de disney",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ServiciosAuth",
+			"item": [
+				{
+					"name": "Post Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"nombre\" ,\r\n    \"lastname\":\"apellido\",\r\n    \"email\":\"name@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Service that registers the user in the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin@gmail.com\", \"password\": \"password\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login Api disney"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/auth/confirm/{{token}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"confirm",
+								"{{token}}"
+							]
+						},
+						"description": "Service that confirms the user's email"
+					},
+					"response": []
+				},
+				{
+					"name": "Forward Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"name@gmail.com\", \"password\": \"password\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/forwarding",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"forwarding"
+							]
+						},
+						"description": "Service that forwards mail to a user\n"
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la autenticación del usuario"
+		},
+		{
+			"name": "ServiciosCharacter",
+			"item": [
+				{
+					"name": "add  a new Character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n    \"name\":\"Golfo\",\r\n    \"story\":\"perro mestizo de la calle, vive solo y come sobras del restaurante italiano Tony\",\r\n    \"weight\":10,\r\n    \"age\":4\r\n\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters"
+							]
+						},
+						"description": "Service that insert a new character in database. The character name is required. \nAge, weight and story are optional."
+					},
+					"response": []
+				},
+				{
+					"name": "add movies to character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"movies\":[\r\n{\r\n    \"title\":\"La casa de mikey Mouse1\",\r\n    \"year\":1995\r\n},\r\n\r\n{\r\n    \"title\":\"La casa de mikey Mouse1\",\r\n    \"year\":1995\r\n}\r\n\r\n]\r\n     }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}",
+								"movies"
+							]
+						},
+						"description": "service that insert a new movies and links them to the character"
+					},
+					"response": []
+				},
+				{
+					"name": "add movie to character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}/movies/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}",
+								"movies",
+								"{{id_movie}}"
+							]
+						},
+						"description": "Service that link a movie with a character"
+					},
+					"response": []
+				},
+				{
+					"name": "upload character image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "Archivos .jpg",
+									"type": "file",
+									"src": "/C:/Users/belen/Downloads/UNKNOWN.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/characters/upload/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"upload",
+								"{{id_character}}"
+							]
+						},
+						"description": "service that upload a character image by id"
+					},
+					"response": []
+				},
+				{
+					"name": "character details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "service that show details about a character"
+					},
+					"response": []
+				},
+				{
+					"name": "search characters",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/?offset=0&limit=20&age=1&name=jumbo&id_movie=4&weight=54.4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								""
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "age",
+									"value": "1",
+									"description": "the age of the character\n"
+								},
+								{
+									"key": "name",
+									"value": "jumbo",
+									"description": "the name of the character\n"
+								},
+								{
+									"key": "id_movie",
+									"value": "4",
+									"description": "movie id"
+								},
+								{
+									"key": "weight",
+									"value": "54.4",
+									"description": "character weight\n"
+								}
+							]
+						},
+						"description": "service that get a paginated list of all characters and search by name, weight, id_movie and age of character"
+					},
+					"response": []
+				},
+				{
+					"name": "Show character image",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/characters/img/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"img",
+								"{{id_character}}"
+							]
+						},
+						"description": "service that show  a character image"
+					},
+					"response": []
+				},
+				{
+					"name": "update Character",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"\",\r\n    \"age\":2,\r\n    \"story\":\"\",\r\n    \"weight\":520\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}"
+							]
+						},
+						"description": "Service that update a character by id. You can update the age, weight, the name and history of the character"
+					},
+					"response": []
+				},
+				{
+					"name": "delete character by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}"
+							]
+						},
+						"description": "service that delete a character by id"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movie character",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"movies\":\r\n    [{\r\n    \"title\":\"desconocid1a\",\r\n    \"year\":2005\r\n},{\r\n\"title\":\"desconocid2\",\r\n    \"year\":2005\r\n}\r\n]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/{{id_character}}/movies/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"{{id_character}}",
+								"movies",
+								"{{id_movie}}"
+							]
+						},
+						"description": "service that unlink a movie and a character"
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de Personajes"
+		},
+		{
+			"name": "ServiciosMovies",
+			"item": [
+				{
+					"name": "add movies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n           \"title\":\"Bambie\",\r\n            \"year\":1942,\r\n            \"score\":4.2        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Service that insert a new movie in database. The movie title and year are required. \nthe score is optional."
+					},
+					"response": []
+				},
+				{
+					"name": "add characters to Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"characters\":[{\r\n\"name\":\"tambor\",\r\n\"story\":\"conejo del bosque donde nacion bambi, es su mejor amigo\"\r\n\r\n},{\r\n\"name\":\"flor\",\r\n\"story\":\"ardilla del bosque donde nacio bambi\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/characters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"characters"
+							]
+						},
+						"description": "service that insert a new character and links them to the movie"
+					},
+					"response": []
+				},
+				{
+					"name": "add character to Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"characters\":[{\r\n\"name\":\"tambor\",\r\n\"story\":\"conejo del bosque donde nacion bambi, es su mejor amigo\"\r\n\r\n},{\r\n\"name\":\"flor\",\r\n\"story\":\"ardilla del bosque donde nacio bambi\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"characters",
+								"{{id_character}}"
+							]
+						},
+						"description": "Service that link a character with a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "add Genre to Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/genres/{{id_genre}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"genres",
+								"{{id_genre}}"
+							]
+						},
+						"description": "Service that link a movie with a genre"
+					},
+					"response": []
+				},
+				{
+					"name": "upload Movie image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/belen/Documents/NODE/alkemy/img/elsa.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/movies/upload/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"upload",
+								"{{id_movie}}"
+							]
+						},
+						"description": "service that upload a movie image by id"
+					},
+					"response": []
+				},
+				{
+					"name": "list/search movie",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies?genre=4&limit=20&offset=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "la",
+									"description": "movie title",
+									"disabled": true
+								},
+								{
+									"key": "genre",
+									"value": "4",
+									"description": "movie genre"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": ""
+								}
+							]
+						},
+						"description": "service that get a paginated list of all movies and search by\ntitle, genre or id_genre  of movie"
+					},
+					"response": []
+				},
+				{
+					"name": "search movie by genre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/genres/{{id_genre}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"genres",
+								"{{id_genre}}"
+							]
+						},
+						"description": "service that get a paginated list of all movies by genre id"
+					},
+					"response": []
+				},
+				{
+					"name": "movies details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}"
+							]
+						},
+						"description": "service that show details about a movies"
+					},
+					"response": []
+				},
+				{
+					"name": "update Movie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"Aladdin y los 40 ladrones\",\r\n\"score\":3.3,\r\n\"year\":2000}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}"
+							]
+						},
+						"description": "Service that update a movie by id. You can update the title, score and year  of the movie"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}"
+							]
+						},
+						"description": "service that delete a movie by id"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie character",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"characters",
+								"{{id_character}}"
+							]
+						},
+						"description": "service that unlink a movie and a character"
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie genre",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/genres/{{id_genre}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"genres",
+								"{{id_genre}}"
+							]
+						},
+						"description": "service that unlink a movie and a genre"
+					},
+					"response": []
+				},
+				{
+					"name": "show movie image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/img/{{id_movie}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"img",
+								"{{id_movie}}"
+							]
+						},
+						"description": "service that show  a movie image"
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de peliculas"
+		},
+		{
+			"name": "ServiciosGenre",
+			"item": [
+				{
+					"name": "Show genre image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/genres/img/{{id_genre}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"genres",
+								"img",
+								"{{id_genre}}"
+							]
+						},
+						"description": "service that show  a genre image"
+					},
+					"response": []
+				},
+				{
+					"name": "get Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/genres",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"genres"
+							]
+						},
+						"description": "service that get list of all genres"
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de los generos de pelicula"
+		}
+	]
+}
