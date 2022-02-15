@@ -1,0 +1,961 @@
+{
+	"info": {
+		"_postman_id": "2ae43a1a-1204-48ee-998e-2f5a3b980372",
+		"name": "Api Disney",
+		"description": "API para obtener y cargar peliculas y  personajes del mundo de disney",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ServiciosAuth",
+			"item": [
+				{
+					"name": "Post Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"nombre\" ,\r\n    \"lastname\":\"apellido\",\r\n    \"email\":\"email@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Service that registers the user in the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin@gmail.com\", \"password\": \"password\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login Api disney"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/auth/confirm/{{token}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"confirm",
+								"{{token}}"
+							]
+						},
+						"description": "Service that confirms the user's email"
+					},
+					"response": []
+				},
+				{
+					"name": "Forward Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"belenibaniez@gmail.com\", \"password\": \"password\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/forwarding",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"forwarding"
+							]
+						},
+						"description": "Service that forwards mail to a user\n"
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la autenticación del usuario"
+		},
+		{
+			"name": "ServiciosCharacter",
+			"item": [
+				{
+					"name": "add  a Character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n    \"name\":\"Golfo\",\r\n    \"story\":\"perro mestizo de la calle, vive solo y come sobras del restaurante italiano Tony\",\r\n    \"weight\":10,\r\n    \"age\":4\r\n\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add movie a character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"movies\":[\r\n{\r\n    \"title\":\"La casa de mikey Mouse\",\r\n    \"year\":1995\r\n},\r\n\r\n{\r\n    \"title\":\"Mikey y sus amigos\",\r\n    \"year\":2000\r\n}\r\n\r\n]\r\n     }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/17/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"17",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add movie a character existente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/1/movies/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"1",
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload character image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "Archivos .jpg",
+									"type": "file",
+									"src": "/C:/Users/belen/Downloads/UNKNOWN.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/characters/upload/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"upload",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "character detaills",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"1"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search characters",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/?offset=0&limit=20&weight=54.4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								""
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "age",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "jumbo",
+									"disabled": true
+								},
+								{
+									"key": "id_movie",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "weight",
+									"value": "54.4"
+								}
+							]
+						},
+						"description": "Get a paginated list of all characters and search by\nname, weight, id_movie and age of character"
+					},
+					"response": []
+				},
+				{
+					"name": "Show character image",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/characters/img/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"img",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Character",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\":520\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete character by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/characters/56",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movie character",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"movies\":\r\n    [{\r\n    \"title\":\"desconocid1a\",\r\n    \"year\":2005\r\n},{\r\n\"title\":\"desconocid2\",\r\n    \"year\":2005\r\n}\r\n]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/characters/1/movies/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"1",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de Personajes"
+		},
+		{
+			"name": "ServiciosMovies",
+			"item": [
+				{
+					"name": "add movies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n           \"title\":\"Bambie\",\r\n            \"year\":1942,\r\n            \"score\":4.2        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add character por Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"characters\":[{\r\n\"name\":\"tambor\",\r\n\"story\":\"conejo del bosque donde nacion bambi, es su mejor amigo\"\r\n\r\n},{\r\n\"name\":\"flor\",\r\n\"story\":\"ardilla del bosque donde nacio bambi\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/7/characters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"7",
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Genre por Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/20/genres/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"20",
+								"genres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload Movie image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/belen/Documents/NODE/alkemy/img/olaf.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/characters/upload/57",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"characters",
+								"upload",
+								"57"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list/search character",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "name",
+								"value": "nombre",
+								"type": "text"
+							},
+							{
+								"key": "limit",
+								"value": "5",
+								"type": "text"
+							},
+							{
+								"key": "from",
+								"value": "0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies?genre=4&limit=20&offset=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "la",
+									"disabled": true
+								},
+								{
+									"key": "genre",
+									"value": "4"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search movie by genre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/genres/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"genres",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movies details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Movie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"Aladdin y los 40 ladrones\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/2/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie character",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/2/characters/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"2",
+								"characters",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie genre",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/2/genres/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"2",
+								"genres",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show movie image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/img/52",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"img",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de peliculas"
+		},
+		{
+			"name": "ServiciosGenre",
+			"item": [
+				{
+					"name": "Show genre image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/genres/img/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"genres",
+								"img",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/genres",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Directorio de servicios destinados a la gestión de los generos de pelicula"
+		}
+	]
+}
