@@ -1,0 +1,63 @@
+[
+    {
+        "id":1,
+        "name":"UNKNOWN",
+        "imgUrl":"UNKNOWN"
+    },
+    {
+     
+        "id":2,
+        "name":"ACTION",
+        "imgUrl":"/assets/genres/ACTION"
+      
+    },{
+     
+        "id":3,
+        "name":"ANIMATION",        
+        "imgUrl":"/assets/genres/ANIMATION"
+
+    },
+    {
+     
+        "id":4,
+        "name":"COMEDY",
+        "imgUrl":"/assets/genres/COMEDY"
+
+
+   },
+  {
+    "id":5,
+    "name":"DRAMA",
+    "imgUrl":"/assets/genres/DRAMA"
+
+ }
+ ,
+ {
+    "id":6,
+    "name":"HORROR",
+    "imgUrl":"/assets/genres/HORROR"
+
+},{
+    "id":7,
+    "name":"MARTIAL ARTS FILM",
+    "imgUrl":"/assets/genres/MARTIAL ARTS FILM"
+
+},
+{
+ "id":8,
+    "name":"MUSICAL",
+    "imgUrl":"/assets/genres/MUSICAL"
+},
+{
+ "id":9,
+    "name":"ROMANTIC",
+    "imgUrl":"/assets/genres/ROMANTIC"
+
+},
+{
+ "id":10,
+    "name":"SCIENCE FICTION FILM",
+    "imgUrl":"/assets/genres/SCIENCE FICTION FILM"
+
+}
+   ]
