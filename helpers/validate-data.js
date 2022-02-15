@@ -7,7 +7,7 @@ const Genre= require('../models').Genre
 const isUniqueMail = async(email)=>{
 
     const mail= await User.findOne(
-        { where:{email: email.toUpperCase()}
+        { where:{email: email.toLowerCase()}
         });
 
 

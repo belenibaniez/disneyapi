@@ -11,7 +11,7 @@ const login= async(req,res=response)=> {
     const {email, password}= req.body;
     try{
 
-        const user =await User.findOne({where:{email:email.toUpperCase()}});
+        const user =await User.findOne({where:{email:email.toLowerCase()}});
 
         if(!user){
             return res.status(401).json({
@@ -82,7 +82,7 @@ const login= async(req,res=response)=> {
 const register = async(req, res=response)=> {
    
     const  {name,lastname,email,password}=req.body;
- 
+
     const salt=bcrypt.genSaltSync();
     newPassword=bcrypt.hashSync(password,salt);
 
@@ -91,7 +91,7 @@ try{
     const createdUser=await  User.create({
         name:name.toUpperCase(), 
         lastname:lastname.toUpperCase(),
-        email:email.toUpperCase(),
+        email:email.toLowerCase(),
         password:newPassword
     },{
         field:['name','lastname','email','password']
@@ -138,7 +138,6 @@ const verify= async(req,res)=> {
                
             })
         }
-        const {uuid}=dataUser
 
         let userfind = await User.findOne({where:{
             uuid:dataUser.uuid}})  //ver como hacer q salan esas claves
@@ -200,12 +199,12 @@ const forwarding = async(req, res=response)=> {
 
 try{
   
-    const user =await User.findOne({where:{email:email.toUpperCase()}});
+    const user =await User.findOne({where:{email:email.toLowerCase()}});
 
     if(!user){
         return res.status(401).json({
             success:false,
-            message: 'Login failed, try again',
+            message: 'Forwarding failed, try again',
             errors:[{
                 msg:'The email or password is incorrect.'}]
 
@@ -214,7 +213,7 @@ try{
     if(!user.status){
         return res.status(401).json({
             success:false,
-            message: 'Login failed, try again',
+            message: 'Forwarding failed, try again',
             errors:[{
                 msg:'The email or password is incorrect.'}]})
     }

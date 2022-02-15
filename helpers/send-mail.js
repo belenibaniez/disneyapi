@@ -6,10 +6,9 @@ const getTemplate= require('../helpers/getTemplate')
 
 
 const sendMAilWelcome= async (mail, name,token, sandbox_mode=false)=>{
-
 const msg={
-    to:process.env.TO_EMAIL,
-    from:mail,
+    to:mail,
+    from:process.env.TO_EMAIL,
     subject: "Welcome To Disney Api",
     html: getTemplate(name, token),
     mail_settings:{

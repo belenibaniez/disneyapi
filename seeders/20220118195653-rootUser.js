@@ -18,10 +18,9 @@ module.exports = {
 
      await queryInterface.bulkInsert('Users', [
       {
-      // uuid:sequelize.Utils.generateUUID(),
         name:'Administrador'.toUpperCase(),
         lastname:null,
-        email:'admin@gmail.com'.toUpperCase(),
+        email:'admin@gmail.com'.toLowerCase(),
         password:bcrypt.hashSync('password',salt),
         status:true,
         verified:true,
@@ -30,10 +29,9 @@ module.exports = {
         
        },
        {
-      // uuid:sequelize.Utils.generateUUID(),
       name:'userDelete'.toUpperCase(),
        lastname:null,
-       email:'testdelete@gmail.com'.toUpperCase(),
+       email:'testdelete@gmail.com'.toLowerCase(),
        password:bcrypt.hashSync('password',salt),
        status:false,
        verified:true,
@@ -42,10 +40,9 @@ module.exports = {
        
       },
       {
-        // uuid:sequelize.Utils.generateUUID(),
         name:'userNotVerify'.toUpperCase(),
          lastname:null,
-         email:'testNotVerify@gmail.com'.toUpperCase(),
+         email:'testNotVerify@gmail.com'.toLowerCase(),
          password:bcrypt.hashSync('password',salt),
          status:false,
          verified:false,
