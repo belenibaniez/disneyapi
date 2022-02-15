@@ -166,7 +166,7 @@ describe('Add movies to character:', ()=>{
     expect(res).to.have.status(401);
     expect(res.body).to.have.property('success').to.equal(false);
     expect(res.body).to.have.property('message').to.equal("There are repeated movies")
-    expect(res.body).to.have.property('data')
+    expect(res.body).to.have.property('errors')
     done();
     } )
     }  )

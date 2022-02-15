@@ -24,7 +24,7 @@ describe('Register User: ', ()=>{
     .end((err,res)=>{
         expect(res).to.have.status(201);
         expect(res.body).to.have.property('success').to.equal(true)
-        expect(res.body).to.have.property('message').to.equal("User created");
+        expect(res.body).to.have.property('message').to.equal("User created, waiting for email confirmation");
         expect(res.body).to.have.property('data')
                                 .which.is.an('object')
                                 .and.has.property('user')
