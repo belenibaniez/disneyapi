@@ -109,15 +109,14 @@ const addGenresMovie=async(req,res)=>{
 
 
 const uploadMovie = async (req, res) => {
-    HOST = ""  //agregar dominio aqui
     const { id } = req.params;
      try {
+        await uploadFile(req.files, id, 'movies')
+        .then( async nombre =>{
 
-
-            const nombre = await uploadFile(req.files, id,'movies')
             const nombreCortado=nombre.split('.');
 
-            let imgUrl= HOST + '/movies/img/' + nombreCortado[0]
+            let imgUrl= process.env.HOST+':'+process.env.PORT + '/movies/img/' + nombreCortado[0]
 
             const movie= await Movie.update({imgUrl}, 
             { where:{ id}})
@@ -127,7 +126,7 @@ const uploadMovie = async (req, res) => {
                 res.json({
                     success:true,
                     message: 'File uploaded Succesfull',
-                    data:movie
+                    data:imgUrl
                 })
 
             }else {
@@ -138,17 +137,29 @@ const uploadMovie = async (req, res) => {
 
             }
             
-
-        } catch (err) {
+        })
+        .catch (err => {
             console.log(err)
 
             res.status(500).json({
                 success:false,
                 message: 'Something goes wrong'
-            })        }
+            })        })
+        
+        } catch (err) {
+            console.log(err)
+    
+            res.status(500).json({
+                success:false,
+                message: 'Sorry, something went wrong'
+            })
+        }
+    
+    
+    }
 
 
-}
+
 
 
 const searchMovie = async (req, res) => {
@@ -225,7 +236,7 @@ const showMovie = async (req, res = response) => {
         return res.sendFile(pathImagen)
     }
 
-    const placeholder = path.join(__dirname, '../assents/no-image.jpg')
+    const placeholder = path.join(__dirname, '../assets/no-image.jpg')
     return res.sendFile(placeholder)
 
 

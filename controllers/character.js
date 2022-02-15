@@ -162,6 +162,7 @@ const uploadCharacter = async (req, res) => {
 
          })
         .catch(err=>{
+            console.log(err)
 
             res.status(400).json({
                 success:false,
@@ -251,13 +252,11 @@ const searchCharacter = async (req, res) => {
         const { id } = req.params;
     
         const pathImagen = path.join(__dirname, '../uploads/characters/', `${id}.jpg`)
-        console.log(pathImagen)
         if (fs.existsSync(pathImagen)) {
             return res.sendFile(pathImagen)
         }
     
         const placeholder = path.join(__dirname, '../assets/no-image.jpg')
-        console.log(placeholder)
         return res.sendFile(placeholder)
     
     
