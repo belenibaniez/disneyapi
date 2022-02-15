@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"nombre\" ,\r\n    \"lastname\":\"apellido\",\r\n    \"email\":\"email@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
+							"raw": "{\r\n    \"name\":\"nombre\" ,\r\n    \"lastname\":\"apellido\",\r\n    \"email\":\"name@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"email\": \"belenibaniez@gmail.com\", \"password\": \"password\" }",
+							"raw": "{ \"email\": \"name@gmail.com\", \"password\": \"password\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 			"name": "ServiciosCharacter",
 			"item": [
 				{
-					"name": "add  a Character",
+					"name": "add  a new Character",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -156,12 +156,13 @@
 							"path": [
 								"characters"
 							]
-						}
+						},
+						"description": "Service that insert a new character in database. The character name is required. \nAge, weight and story are optional."
 					},
 					"response": []
 				},
 				{
-					"name": "add movie a character",
+					"name": "add movies to character",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -173,7 +174,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"movies\":[\r\n{\r\n    \"title\":\"La casa de mikey Mouse\",\r\n    \"year\":1995\r\n},\r\n\r\n{\r\n    \"title\":\"Mikey y sus amigos\",\r\n    \"year\":2000\r\n}\r\n\r\n]\r\n     }",
+							"raw": "{\"movies\":[\r\n{\r\n    \"title\":\"La casa de mikey Mouse1\",\r\n    \"year\":1995\r\n},\r\n\r\n{\r\n    \"title\":\"La casa de mikey Mouse1\",\r\n    \"year\":1995\r\n}\r\n\r\n]\r\n     }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -181,21 +182,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/17/movies",
+							"raw": "{{host}}/characters/{{id_character}}/movies",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
-								"17",
+								"{{id_character}}",
 								"movies"
 							]
-						}
+						},
+						"description": "service that insert a new movies and links them to the character"
 					},
 					"response": []
 				},
 				{
-					"name": "add movie a character existente",
+					"name": "add movie to character",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -215,17 +217,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/1/movies/4",
+							"raw": "{{host}}/characters/{{id_character}}/movies/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
-								"1",
+								"{{id_character}}",
 								"movies",
-								"4"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "Service that link a movie with a character"
 					},
 					"response": []
 				},
@@ -252,21 +255,22 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/characters/upload/1",
+							"raw": "{{host}}/characters/upload/{{id_character}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
 								"upload",
-								"1"
+								"{{id_character}}"
 							]
-						}
+						},
+						"description": "service that upload a character image by id"
 					},
 					"response": []
 				},
 				{
-					"name": "character detaills",
+					"name": "character details",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -283,13 +287,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/1",
+							"raw": "{{host}}/characters/{{id_character}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
-								"1"
+								"{{id_character}}"
 							],
 							"query": [
 								{
@@ -298,7 +302,8 @@
 									"disabled": true
 								}
 							]
-						}
+						},
+						"description": "service that show details about a character"
 					},
 					"response": []
 				},
@@ -320,7 +325,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/?offset=0&limit=20&weight=54.4",
+							"raw": "{{host}}/characters/?offset=0&limit=20&age=1&name=jumbo&id_movie=4&weight=54.4",
 							"host": [
 								"{{host}}"
 							],
@@ -340,25 +345,26 @@
 								{
 									"key": "age",
 									"value": "1",
-									"disabled": true
+									"description": "the age of the character\n"
 								},
 								{
 									"key": "name",
 									"value": "jumbo",
-									"disabled": true
+									"description": "the name of the character\n"
 								},
 								{
 									"key": "id_movie",
 									"value": "4",
-									"disabled": true
+									"description": "movie id"
 								},
 								{
 									"key": "weight",
-									"value": "54.4"
+									"value": "54.4",
+									"description": "character weight\n"
 								}
 							]
 						},
-						"description": "Get a paginated list of all characters and search by\nname, weight, id_movie and age of character"
+						"description": "service that get a paginated list of all characters and search by name, weight, id_movie and age of character"
 					},
 					"response": []
 				},
@@ -374,16 +380,17 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/characters/img/1",
+							"raw": "{{host}}/characters/img/{{id_character}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
 								"img",
-								"1"
+								"{{id_character}}"
 							]
-						}
+						},
+						"description": "service that show  a character image"
 					},
 					"response": []
 				},
@@ -400,7 +407,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"weight\":520\r\n}",
+							"raw": "{\r\n    \"name\":\"\",\r\n    \"age\":2,\r\n    \"story\":\"\",\r\n    \"weight\":520\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -408,15 +415,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/5",
+							"raw": "{{host}}/characters/{{id_character}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
-								"5"
+								"{{id_character}}"
 							]
-						}
+						},
+						"description": "Service that update a character by id. You can update the age, weight, the name and history of the character"
 					},
 					"response": []
 				},
@@ -441,16 +449,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/characters/56",
+							"raw": "{{host}}/characters/{{id_character}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"characters",
-								"56"
+								"{{id_character}}"
 							]
-						}
+						},
+						"description": "service that delete a character by id"
 					},
 					"response": []
 				},
@@ -475,17 +483,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/characters/1/movies/1",
+							"raw": "{{host}}/characters/{{id_character}}/movies/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"characters",
-								"1",
+								"{{id_character}}",
 								"movies",
-								"1"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "service that unlink a movie and a character"
 					},
 					"response": []
 				}
@@ -523,12 +532,13 @@
 							"path": [
 								"movies"
 							]
-						}
+						},
+						"description": "Service that insert a new movie in database. The movie title and year are required. \nthe score is optional."
 					},
 					"response": []
 				},
 				{
-					"name": "add character por Movie",
+					"name": "add characters to Movie",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -548,21 +558,58 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/7/characters",
+							"raw": "{{host}}/movies/{{id_movie}}/characters",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"7",
+								"{{id_movie}}",
 								"characters"
 							]
-						}
+						},
+						"description": "service that insert a new character and links them to the movie"
 					},
 					"response": []
 				},
 				{
-					"name": "add Genre por Movie",
+					"name": "add character to Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"characters\":[{\r\n\"name\":\"tambor\",\r\n\"story\":\"conejo del bosque donde nacion bambi, es su mejor amigo\"\r\n\r\n},{\r\n\"name\":\"flor\",\r\n\"story\":\"ardilla del bosque donde nacio bambi\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{id_movie}}/characters/{{id_character}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{id_movie}}",
+								"characters",
+								"{{id_character}}"
+							]
+						},
+						"description": "Service that link a character with a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "add Genre to Movie",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -582,17 +629,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/20/genres/1",
+							"raw": "{{host}}/movies/{{id_movie}}/genres/{{id_genre}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"20",
+								"{{id_movie}}",
 								"genres",
-								"1"
+								"{{id_genre}}"
 							]
-						}
+						},
+						"description": "Service that link a movie with a genre"
 					},
 					"response": []
 				},
@@ -613,48 +661,33 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/belen/Documents/NODE/alkemy/img/olaf.jpg"
+									"src": "/C:/Users/belen/Documents/NODE/alkemy/img/elsa.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{host}}/characters/upload/57",
+							"raw": "{{host}}/movies/upload/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"characters",
+								"movies",
 								"upload",
-								"57"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "service that upload a movie image by id"
 					},
 					"response": []
 				},
 				{
-					"name": "list/search character",
+					"name": "list/search movie",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "name",
-								"value": "nombre",
-								"type": "text"
-							},
-							{
-								"key": "limit",
-								"value": "5",
-								"type": "text"
-							},
-							{
-								"key": "from",
-								"value": "0",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -676,11 +709,13 @@
 								{
 									"key": "title",
 									"value": "la",
+									"description": "movie title",
 									"disabled": true
 								},
 								{
 									"key": "genre",
-									"value": "4"
+									"value": "4",
+									"description": "movie genre"
 								},
 								{
 									"key": "limit",
@@ -691,7 +726,8 @@
 									"value": ""
 								}
 							]
-						}
+						},
+						"description": "service that get a paginated list of all movies and search by\ntitle, genre or id_genre  of movie"
 					},
 					"response": []
 				},
@@ -713,16 +749,17 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/genres/2",
+							"raw": "{{host}}/movies/genres/{{id_genre}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
 								"genres",
-								"2"
+								"{{id_genre}}"
 							]
-						}
+						},
+						"description": "service that get a paginated list of all movies by genre id"
 					},
 					"response": []
 				},
@@ -744,15 +781,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/2",
+							"raw": "{{host}}/movies/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "service that show details about a movies"
 					},
 					"response": []
 				},
@@ -769,7 +807,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"title\":\"Aladdin y los 40 ladrones\"}",
+							"raw": "{\"title\":\"Aladdin y los 40 ladrones\",\r\n\"score\":3.3,\r\n\"year\":2000}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -777,15 +815,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/3",
+							"raw": "{{host}}/movies/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"3"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "Service that update a movie by id. You can update the title, score and year  of the movie"
 					},
 					"response": []
 				},
@@ -810,16 +849,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/2/",
+							"raw": "{{host}}/movies/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2",
-								""
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "service that delete a movie by id"
 					},
 					"response": []
 				},
@@ -844,17 +883,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/2/characters/3",
+							"raw": "{{host}}/movies/{{id_movie}}/characters/{{id_character}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2",
+								"{{id_movie}}",
 								"characters",
-								"3"
+								"{{id_character}}"
 							]
-						}
+						},
+						"description": "service that unlink a movie and a character"
 					},
 					"response": []
 				},
@@ -879,17 +919,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/2/genres/3",
+							"raw": "{{host}}/movies/{{id_movie}}/genres/{{id_genre}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2",
+								"{{id_movie}}",
 								"genres",
-								"3"
+								"{{id_genre}}"
 							]
-						}
+						},
+						"description": "service that unlink a movie and a genre"
 					},
 					"response": []
 				},
@@ -899,16 +940,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/movies/img/52",
+							"raw": "{{host}}/movies/img/{{id_movie}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
 								"img",
-								"52"
+								"{{id_movie}}"
 							]
-						}
+						},
+						"description": "service that show  a movie image"
 					},
 					"response": []
 				}
@@ -924,16 +966,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/genres/img/2",
+							"raw": "{{host}}/genres/img/{{id_genre}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"genres",
 								"img",
-								"2"
+								"{{id_genre}}"
 							]
-						}
+						},
+						"description": "service that show  a genre image"
 					},
 					"response": []
 				},
@@ -950,7 +993,8 @@
 							"path": [
 								"genres"
 							]
-						}
+						},
+						"description": "service that get list of all genres"
 					},
 					"response": []
 				}
